@@ -1,0 +1,154 @@
+<div class="container">
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label
+        for="tab-1"
+        class="tab"
+        >Sign In</label
+      >
+      <input id="tab-2" type="radio" name="tab" class="sign-up" /><label
+        for="tab-2"
+        class="tab"
+        >Sign Up</label
+      >
+      <div class="login-form">
+        <div class="sign-in-htm">
+          <form [formGroup]="loginData" (ngSubmit)="onLogIn()">
+            <div class="group">
+              <label for="user" class="label">Email</label>
+              <input
+                id="user"
+                type="text"
+                class="input"
+                formControlName="email"
+              />
+              <p
+                class="err"
+                *ngIf="
+                  loginData.controls['email'].dirty &&
+                  loginData.controls['email'].hasError('required')
+                "
+              >
+                email is a required Field
+              </p>
+              <p
+                class="err"
+                *ngIf="
+                  loginData.controls['email'].dirty &&
+                  loginData.controls['email'].hasError('email')
+                "
+              >
+                fill a valid email
+              </p>
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input
+                id="pass"
+                type="password"
+                class="input"
+                data-type="password"
+                formControlName="password"
+              />
+              <p
+                class="err"
+                *ngIf="
+                  loginData.controls['password'].dirty &&
+                  loginData.controls['password'].hasError('required')
+                "
+              >
+                password is a required Field
+              </p>
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked />
+              <label for="check"
+                ><span class="icon"></span> Keep me Signed in</label
+              >
+            </div>
+            <div class="group">
+              <input
+                type="submit"
+                class="button"
+                value="Sign In"
+                [disabled]="!loginData.valid"
+              />
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <a routerLink="/ForgotPassword">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+        <div class="sign-up-htm">
+          <form [formGroup]="signInData" (ngSubmit)="onSignUp()">
+            <div class="group">
+              <label for="fname" class="label">First Name</label>
+              <input
+                id="fname"
+                type="text"
+                class="input"
+                formControlName="firstName"
+              />
+              <p class="err" *ngIf="signInData.controls['firstName'].dirty && signInData.controls['firstName'].hasError('required')">First name is require </p>
+            </div>
+            <div class="group">
+              <label for="lname" class="label">Last Name</label>
+              <input
+                id="lname"
+                type="text"
+                class="input"
+                formControlName="lastName"
+              />
+              <p class="err"  *ngIf="signInData.controls['lastName'].dirty && signInData.controls['lastName'].hasError('required')">Last name is require </p>
+            </div>
+            <div class="group">
+                <label for="pass4" class="label">Email Address</label>
+                <input id="pass4" type="text" class="input" formControlName="email" />
+              <p class="err"  *ngIf="signInData.controls['email'].dirty && signInData.controls['email'].hasError('required')">Email is require </p>
+              <p class="err"  *ngIf="signInData.controls['email'].dirty && signInData.controls['email'].hasError('email')">Enter a valid email </p>
+            </div>
+            <div class="group">
+              <label for="pass2" class="label" >Password</label>
+              <input
+                id="pass2"
+                type="password"
+                class="input"
+                data-type="password"
+                formControlName="password"
+              />
+              <p class="err"  *ngIf="signInData.controls['password'].dirty && signInData.controls['password'].hasError('required')">Last name is require </p>
+            </div>
+            <div class="group">
+                <label for="phNo" class="label" >Phone No</label>
+                <input
+                  id="phNo"
+                  type="text"
+                  class="input"
+                  formControlName="phoneNo"
+                />
+              <p class="err"  *ngIf="signInData.controls['phoneNo'].dirty && signInData.controls['phoneNo'].hasError('required')">Last name is require </p>
+            </div>
+              <div class="group">
+                <label for="dob" class="label">DOB</label>
+                <input
+                  id="dob"
+                  type="date"
+                  class="input"
+                  formControlName="dateOfBirth"
+                />
+              <p class="err"  *ngIf="signInData.controls['dateOfBirth'].dirty && signInData.controls['dateOfBirth'].hasError('required')">Last name is require </p>
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign Up" [disabled]="!signInData.valid" />
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <label for="tab-1">Already Member?</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
