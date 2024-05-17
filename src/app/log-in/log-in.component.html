@@ -117,7 +117,8 @@
                 data-type="password"
                 formControlName="password"
               />
-              <p class="err"  *ngIf="signInData.controls['password'].dirty && signInData.controls['password'].hasError('required')">Last name is require </p>
+              <p class="err" *ngIf="signInData.controls['password'].hasError('passwordStrength')">password must contain one upper letter, one lower letter and one numeric value</p>
+              <p class="err"  *ngIf="signInData.controls['password'].dirty && signInData.controls['password'].hasError('required')">Password is required </p>
             </div>
             <div class="group">
                 <label for="phNo" class="label" >Phone No</label>
@@ -127,7 +128,8 @@
                   class="input"
                   formControlName="phoneNo"
                 />
-              <p class="err"  *ngIf="signInData.controls['phoneNo'].dirty && signInData.controls['phoneNo'].hasError('required')">Last name is require </p>
+              <p class="err" *ngIf="signInData.controls['phoneNo'].hasError('mobile')">mobile number must be of 10 digits</p>
+              <p class="err"  *ngIf="signInData.controls['phoneNo'].dirty && signInData.controls['phoneNo'].hasError('required')">Phone Number is require </p>
             </div>
               <div class="group">
                 <label for="dob" class="label">DOB</label>

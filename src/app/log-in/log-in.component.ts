@@ -6,6 +6,9 @@ import { FormGroup } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { Response } from '../interface/response';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { passwordValidator } from '../customValidator/password.validator';
+import { MobileValidator } from '../customValidator/mobile.validator';
 
 @Component({
   selector: 'app-log-in',
@@ -22,25 +25,27 @@ export class LogInComponent {
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required, passwordValidator]],
     // repeatPassword: ['', [Validators.required]],
-    phoneNo: [0, [Validators.required]],
+    phoneNo: [0, [Validators.required, MobileValidator]],
     dateOfBirth: ['', [Validators.required]],
   });
   httpService: HttpService = inject(HttpService);
+  router: Router = inject(Router);
   onLogIn() {
     this.httpService.logIn(this.loginData.value).subscribe({
       next: (res: Response) => {
         if (res.statusCode === 200) {
-          localStorage.setItem('token', res?.data?.token);
+          sessionStorage.setItem('token', res?.data?.token);
           console.log(res);
           Swal.fire({
-            position: "top-end",
-            icon: "success",
+            position: 'top-end',
+            icon: 'success',
             title: res.message,
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
+          this.router.navigate(['/Home']);
         } else {
           Swal.fire({
             icon: 'error',
@@ -67,15 +72,16 @@ export class LogInComponent {
       next: (res: Response) => {
         // console.log(res);
         if (res.statusCode === 200) {
-          localStorage.setItem('token', res?.data?.token);
+          sessionStorage.setItem('token', res?.data?.token);
           console.log(res);
           Swal.fire({
-            position: "top-end",
-            icon: "success",
+            position: 'top-end',
+            icon: 'success',
             title: res.message,
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
+          this.router.navigate(['/Home']);
         } else {
           Swal.fire({
             icon: 'error',

@@ -11,7 +11,11 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChatComponent } from './home/chat/chat.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     SignUpComponent,
     PageNotFoundComponent,
     ResetPasswordComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    HomeComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

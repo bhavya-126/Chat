@@ -10,25 +10,25 @@ import Swal from 'sweetalert2';
 })
 export class ForgotPasswordComponent {
   formBuilder: FormBuilder = inject(FormBuilder);
-  httpService:HttpService = inject(HttpService);
+  httpService: HttpService = inject(HttpService);
   data: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
   });
   onSubmit() {
     console.log(this.data.value);
-    let successRecord:number = 200;
+    let successRecord: number = 200;
     this.httpService.forgotPassword(this.data.value.email).subscribe({
-      next:(res:Response)=>{
+      next: (res: Response) => {
         console.log(res);
         if (res.statusCode === 200) {
-          // localStorage.setItem('token', res?.data?.token);
+          // sessionStorage.setItem('token', res?.data?.token);
           console.log(res);
           Swal.fire({
-            position: "top-end",
-            icon: "success",
+            position: 'top-end',
+            icon: 'success',
             title: res.message,
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         } else {
           Swal.fire({
@@ -37,12 +37,11 @@ export class ForgotPasswordComponent {
             text: res.message,
             footer: '<a href="#">Why do I have this issue?</a>',
           });
-      }
-    },
-      error:(err)=>{
+        }
+      },
+      error: (err) => {
         console.log(err);
-        
-      }
+      },
     });
   }
 }

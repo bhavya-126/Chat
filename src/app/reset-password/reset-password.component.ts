@@ -31,11 +31,11 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.resetForm);
 
     this.httpService
-      .changePassword(this.resetForm.value.password, this.token)
+      .resetPassword(this.resetForm.value.password, this.token)
       .subscribe({
         next: (res: Response) => {
           if (res.statusCode === 200) {
-            localStorage.setItem('token', res?.data?.token);
+            sessionStorage.setItem('token', res?.data?.token);
             console.log(res);
             Swal.fire({
               position: 'top-end',
